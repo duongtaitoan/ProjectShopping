@@ -8,6 +8,8 @@
 import java.io.IOException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,13 +41,48 @@ public class VerifyController extends HttpServlet {
             HttpSession session = request.getSession();
            String r=(String) session.getAttribute("random");
             String code = request.getParameter("authcode");
-           
-            if(code.equals(r)){
+           Date date=new Date();
+         SimpleDateFormat sdf2 = new SimpleDateFormat("ss");
+         String q=sdf2.format(date);
+       int x1 = Integer.parseInt(q);
+       System.out.println(q);
+       while(true){
+             Date date2=new Date();
+         SimpleDateFormat sdf = new SimpleDateFormat("ss");
+       String a=sdf.format(date2);
+//        System.out.println(a);
+        int x = Integer.parseInt(a);
+             if(code.equals(r)){
                 out.println("Verification Done");
                   response.sendRedirect("draft.jsp");
             }else{
                 out.println("Incorrect verification code");
+                break;
         }
+        if(x1<30){
+            int b=x1+30;
+            if(x==b){
+                System.out.println("da xoa random");
+                session.removeAttribute("random");
+                break;
+            }
+        }else{
+            int c=x1-30;
+            if(x==c){
+                
+                System.out.println("da xoa random");
+                session.removeAttribute("random");
+                break;
+            }
+        }
+       }
+           
+//            if(code.equals(r)){
+//                out.println("Verification Done");
+//                  response.sendRedirect("draft.jsp");
+//            }else{
+//                out.println("Incorrect verification code");
+//        }
 
     }
     }

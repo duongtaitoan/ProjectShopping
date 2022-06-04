@@ -45,9 +45,18 @@
                                                 placeholder="Enter Verify....">
                                             
                                         </div>
-                                        
+                                        <div id="donghodemnguoc">
+                                            <h3>Time:</h3>
+                                            <h3><span id="sophut"></span><span id="sogiay"></span></h3>
+                                            <h3 id="hetgio" style="display: none;" >Time Off</h3>      
+                                        </div>
+
                                         <input type="submit" value="Verify" class="btn btn-primary btn-user btn-block">
                                     </form>
+                                     
+                                   
+                                                                       
+                                       
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="register.html">Create an Account!</a>
@@ -66,7 +75,32 @@
         </div>
 
     </div>
-
+                                    <script>
+                                        var thoiluong=30;
+//                                  function  thoigian(x){
+//                                      x=30;
+//                                      thoiluong=x;
+//                                      demnguoc();
+//                                  }
+                                     
+                                        setInterval( function() {
+                                            thoiluong--;
+                                            sophut=Math.floor(thoiluong/60);
+                                            sogiay=thoiluong%60;
+                                            document.getElementById("sophut").innerText=sophut;
+                                            document.getElementById("sogiay").innerText=sogiay;
+                                            
+                                           
+                                                if(thoiluong<=0){
+                                             thoiluong=0;
+                                        
+                                           document.getElementById("hetgio").style.display="block";
+                                           document.getElementById("sogiay").style.display="none";
+                                           document.getElementById("sophut").style.display="none";
+                                        }
+                                    },1000);
+                                        
+                                    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -133,7 +133,7 @@ public static boolean send2(String to, String sub,
                 + "</body>\n"
                 + "\n"
                 + "</html>";
-        SendMail.send("lunguyen2k18@gmail.com", subject, message, "lunguyen2k22@gmail.com", "123456789luvip");
+        SendMail.send("lunguyen2k18@gmail.com", subject, message, "lunguyen2k22@gmail.com", "");
    
         //vd để gửi email tới "dich@gmail.com" bằng email "nguon@gmail.com" pass "123456"
 //        SendMail.send("dich@gmail.com", subject, message, "nguon@gmail.com", "123456");

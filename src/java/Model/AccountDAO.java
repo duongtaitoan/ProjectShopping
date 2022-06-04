@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import Entity.Account;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
 /**
  *
  * @author Admin
@@ -50,7 +53,33 @@ public class AccountDAO extends ConnectDB {
     }
     public static void main(String[] args) {
         AccountDAO dao=new AccountDAO();
-        Account a=dao.getAccount("use1", "12345678");
-        System.out.println(a);
+             Date date=new Date();
+         SimpleDateFormat sdf2 = new SimpleDateFormat("ss");
+       String q=sdf2.format(date);
+       int x1 = Integer.parseInt(q);
+       System.out.println(q);
+       while(true){
+             Date date2=new Date();
+         SimpleDateFormat sdf = new SimpleDateFormat("ss");
+       String a=sdf.format(date2);
+//        System.out.println(a);
+        int x = Integer.parseInt(a);
+        if(x1<30){
+            int b=x1+30;
+            if(x==b){
+                System.out.println("da xoa random");
+                break;
+            }
+        }else{
+            int c=x1-30;
+            if(x==c){
+                
+                System.out.println("da xoa random");
+                break;
+            }
+        }
+       }
+//        Account a=dao.getAccount("use1", "12345678");
+//        System.out.println(a);
     }
 }
