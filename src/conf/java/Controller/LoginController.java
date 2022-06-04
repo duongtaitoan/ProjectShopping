@@ -37,10 +37,10 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-               String u=request.getParameter("username");
-          String p=request.getParameter("password");
-            AccountDAO dao=new AccountDAO();
-            Account a= dao.getAccount(u, p);
+            String u = request.getParameter("username");
+            String p = request.getParameter("password");
+            AccountDAO dao = new AccountDAO();
+            Account a = dao.getAccount(u, p);
 //            out.println(cus);
             String service = request.getParameter("do");
 //            out.print(service);
@@ -50,28 +50,29 @@ public class LoginController extends HttpServlet {
                 service = "logincus1";
 //                out.print("ok");
             }
-            if(service.equals("logincus1")){
+            if (service.equals("logincus1")) {
                 out.print("ok1");
-            if(a==null){
-                String error="username and password dont exsited";
-                request.setAttribute("error", error);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }else{
-                if(a.getRole()==1){
-                     HttpSession session =request.getSession();
-                session.setAttribute("account", a);
-                 session.setAttribute("nameacc", a.getUsername());
-                  response.sendRedirect("HomeAdmin");
-                }else{
-                HttpSession session =request.getSession();
-                session.setAttribute("account", a);
-                 session.setAttribute("nameacc", a.getUsername());
-           //      session.setAttribute("accid", a.getCustomerID());
-               
-                response.sendRedirect("HomeEmployee");
+                if (a == null) {
+                    String error = "username and password dont exsited";
+                    request.setAttribute("error", error);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                } else {
+                    if (a.getRole() == 1) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("account", a);
+                        session.setAttribute("nameacc", a.getUsername());
+                        response.sendRedirect("HomeAdmin");
+                    } else {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("account", a);
+                        session.setAttribute("nameacc", a.getUsername());
+                        //      session.setAttribute("accid", a.getCustomerID());
 
-                
-            }}
+                        response.sendRedirect("HomeEmployee");
+
+                    }
+                }
+            }
         }
     }
 
