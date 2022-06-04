@@ -43,9 +43,14 @@ public class DraftController extends HttpServlet {
              AccountDAO dao= new  AccountDAO();
              int n=dao.ChangePassword(user, pass);
              if(n>0){
-                 out.print("da doi mat khau thanh cong");
+                 String mess=("Change password successfully");
+                 session.setAttribute("mess", mess);
+                 response.sendRedirect("draft.jsp");
+                 
              }else{
-                 out.print("không thanh cong");
+                 String mess=("Password change failed");
+                 session.setAttribute("mess", mess);
+                  response.sendRedirect("draft.jsp");
              }
              
         }

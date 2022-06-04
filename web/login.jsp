@@ -45,6 +45,7 @@
 
                                     <form action="login" class="mt-5 mb-5 login-input" method="POST">
                                         <input type="hidden" name="do" value="logincus1">
+                                        <h3 style="color: red">${requestScope.error}</h3>
                                         <div class="form-group">
                                             <input type="textbox" name="username" class="form-control" placeholder="Username" value="">
                                         </div>

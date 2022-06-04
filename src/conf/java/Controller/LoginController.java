@@ -61,7 +61,8 @@ public class LoginController extends HttpServlet {
                         HttpSession session = request.getSession();
                         session.setAttribute("account", a);
                         session.setAttribute("nameacc", a.getUsername());
-                        response.sendRedirect("HomeAdmin");
+//                        response.sendRedirect("HomeAdmin");
+                        response.sendRedirect("index.jsp");
                     } else {
                         HttpSession session = request.getSession();
                         session.setAttribute("account", a);

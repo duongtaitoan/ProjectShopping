@@ -39,12 +39,14 @@ public class VerifyController extends HttpServlet {
             HttpSession session = request.getSession();
            String r=(String) session.getAttribute("random");
             String code = request.getParameter("authcode");
+           
             if(code.equals(r)){
                 out.println("Verification Done");
                   response.sendRedirect("draft.jsp");
             }else{
                 out.println("Incorrect verification code");
         }
+
     }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

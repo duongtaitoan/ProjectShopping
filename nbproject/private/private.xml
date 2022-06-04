@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/web/login.jsp</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Model/ConnectDB.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Controller/LoginController.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Model/AccountDAO.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Controller/LogoutController.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Model/EmployeeDAO.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/src/conf/java/Model/SendEmail.java</file>
+            <file>file:/D:/Ky%205/SWP/SWP391_SE1615_NET_Group5/nbproject/build-impl.xml</file>
+        </group>
+    </open-files>
+</project-private>
