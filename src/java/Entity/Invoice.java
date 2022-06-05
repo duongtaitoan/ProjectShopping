@@ -1,30 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
-
-
-
-
-/**
- *
- * @author SmileMint
- */
 public class Invoice {
-    private int invoiceID;
-    private String createdDate;
+    private int invoiceID;   
+    private Date createdDate;
     private int employeeID;
     private int customerID;
-
+    private ArrayList<Cart> cart = new ArrayList<>();
+    
     public Invoice() {
+        
     }
 
-    public Invoice(int invoiceID, String createdDate, int employeeID, int customerID) {
+    public Invoice(int invoiceID, Date createdDate, int employeeID, int customerID) {
         this.invoiceID = invoiceID;
         this.createdDate = createdDate;
         this.employeeID = employeeID;
@@ -39,11 +30,11 @@ public class Invoice {
         this.invoiceID = invoiceID;
     }
 
-    public String getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -63,12 +54,17 @@ public class Invoice {
         this.customerID = customerID;
     }
 
-    @Override
-    public String toString() {
-        return "Invoice{" + "invoiceID=" + invoiceID + ", createdDate=" + createdDate + ", employeeID=" + employeeID + ", customerID=" + customerID + '}';
+    public ArrayList<Cart> getCart() {
+        return cart;
     }
 
-   
-    
-    
+    public void setCart(ArrayList<Cart> cart) {
+        this.cart = cart;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" + "invoiceID=" + invoiceID + ", createdDate=" + createdDate + ", employeeID=" + employeeID + ", customerID=" + customerID + ", cart=" + cart + '}';
+    }
+ 
 }
