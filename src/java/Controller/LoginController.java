@@ -5,12 +5,14 @@
  */
 package Controller;
 
-import Entity.Account;
-import Model.AccountDAO;
+import Define.Define;
+import Entity.CategoryDTO;
+import Entity.UserDTO;
+import Model.CategoryDAO;
+import Model.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +20,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author duong
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
     /**
@@ -35,45 +36,37 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String u = request.getParameter("username");
-            String p = request.getParameter("password");
-            AccountDAO dao = new AccountDAO();
-            Account a = dao.getAccount(u, p);
-//            out.println(cus);
-            String service = request.getParameter("do");
-//            out.print(service);
-//            out.print("ok");
+          String url = Define.LOGIN_PAGE;
+        HttpSession session = request.getSession();
+        try {
+            String txtEmail = request.getParameter("txtEmail");
+            String txtPassword = request.getParameter("txtPassword");
 
-            if (service == null) {
-                service = "logincus1";
-//                out.print("ok");
+            UserDAO userDAO = new UserDAO();
+            
+            UserDTO userDTO = new UserDTO();
+            userDTO.setEmail(txtEmail);
+            userDTO.setPassword(txtPassword);
+
+            UserDTO role = userDAO.getRole(userDTO);
+            if (role.getRole_name() != null) {
+                session.setAttribute("USER", role.getFull_name());
+                session.setAttribute("EMAIL", role.getEmail());
+                session.setAttribute("ROLE", role.getRole_name());
+                url = Define.INDEX_PAGE;
+
+                CategoryDAO categoryDAO = new CategoryDAO();
+                ArrayList<CategoryDTO> listCategory = categoryDAO.getAllCategorys();
+                request.setAttribute("LIST_CATEGORY", listCategory);
+            } else {
+                request.setAttribute("LOGIN_MSG", "Wrong username/passwrod");
             }
-            if (service.equals("logincus1")) {
-                out.print("ok1");
-                if (a == null) {
-                    String error = "username and password dont exsited";
-                    request.setAttribute("error", error);
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                } else {
-                    if (a.getRole() == 1) {
-                        HttpSession session = request.getSession();
-                        session.setAttribute("account", a);
-                        session.setAttribute("nameacc", a.getUsername());
-//                        response.sendRedirect("HomeAdmin");
-                        response.sendRedirect("index.jsp");
-                    } else {
-                        HttpSession session = request.getSession();
-                        session.setAttribute("account", a);
-                        session.setAttribute("nameacc", a.getUsername());
-                        //      session.setAttribute("accid", a.getCustomerID());
-
-                        response.sendRedirect("HomeEmployee");
-
-                    }
-                }
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log("Error at Login Controller " + e.getLocalizedMessage());
+            request.setAttribute("ERROR_MSG", e.getLocalizedMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

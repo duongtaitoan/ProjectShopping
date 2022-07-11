@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import DAO.InvoiceDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Invoice;
 
 /**
  *
@@ -33,14 +31,14 @@ public class SearchInvoice extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("txt");//lay tu o nguoi dung nhap
-        InvoiceDAO dao = new InvoiceDAO();
-
-        List<Invoice> list1 = dao.getInvoicebyInvoiceID(txtSearch);
-
-        //set date to jsp
-        request.setAttribute("listP", list1);
-        request.getRequestDispatcher("List.jsp").forward(request, response);
+//        String txtSearch = request.getParameter("txt");//lay tu o nguoi dung nhap
+//        InvoiceDAO dao = new InvoiceDAO();
+//
+//        List<Invoice> list1 = dao.getInvoicebyInvoiceID(txtSearch);
+//
+//        //set date to jsp
+//        request.setAttribute("listP", list1);
+//        request.getRequestDispatcher("List.jsp").forward(request, response);
 
     }
 

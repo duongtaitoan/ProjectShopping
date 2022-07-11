@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Controller;
 
+import Define.Define;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author duong
  */
-@WebServlet(urlPatterns = {"/logout"})
 public class LogoutController extends HttpServlet {
 
     /**
@@ -31,17 +31,20 @@ public class LogoutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LogoutController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LogoutController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+       String url = Define.LOGIN_PAGE;
+        HttpSession session = request.getSession();
+        try {
+            session.removeAttribute("USER");
+            session.removeAttribute("EMAIL");
+            session.removeAttribute("ROLE");
+            session.removeAttribute("CART");
+            session.removeAttribute("searchedProductByName");
+            session.removeAttribute("searchedCategoryID");
+            session.invalidate();
+        } catch (Exception e) {
+            request.setAttribute("Error At Logout Controller", e.getLocalizedMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
